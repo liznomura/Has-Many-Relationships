@@ -15,7 +15,7 @@
 
 -- SELECT u.username, p.created_at
 -- FROM users u LEFT JOIN posts p ON u.id = p.id
--- WHERE DATE(p.created_at) >=  DATE('2015-01-01')
+-- WHERE p.created_at >=  '2015-01-01'
 -- ORDER BY p.created_at;
 
 -- SELECT p.title, p.content, u.username
@@ -23,5 +23,10 @@
 -- WHERE u.created_at < '2015-01-01'
 -- ORDER BY u.created_at DESC;
 
-SELECT p.title AS "Post Title", c.id, c.body, c.created_at, c.updated_at, c.users_id, c.posts_id
-FROM posts p RIGHT JOIN comments c ON p.id = c.posts_id;
+-- SELECT p.title AS "Post Title", c.id, c.body, c.created_at, c.updated_at, c.users_id, c.posts_id
+-- FROM posts p RIGHT JOIN comments c ON p.id = c.posts_id;
+
+SELECT p.title AS "post_title", p.url AS "post_url", c.body AS "comment_body"
+FROM comments c LEFT JOIN posts p ON c.posts_id = p.id
+WHERE p.created_at < '2015-01-01'
+ORDER BY p.created_at DESC;
