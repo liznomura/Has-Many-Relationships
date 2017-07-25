@@ -61,8 +61,15 @@
 -- WHERE c.body LIKE '%SSL%' AND p.content LIKE '%dolorum%';
 
 -- STEP 13
-SELECT u.first_name AS "post_author_first_name", u.last_name AS "post_author_last_name", p.title AS "post_title", u.username AS "comment_author_username", c.body AS "comment_body"
-FROM users u, posts p, comments c
-WHERE u.id = p.users_id AND p.id = c.posts_id AND p.content LIKE '%nemo%' AND c.body IN (SELECT c.body
-FROM comments c
-WHERE c.body LIKE '%SSL%' OR c.body LIKE '%firewall%');
+-- SELECT p.id, u.first_name AS "post_author_first_name", u.last_name AS "post_author_last_name", p.title AS "post_title", c.body AS "comment_body", u2.username AS "comment_author_username"
+-- FROM users u, users u2, posts p, comments c
+-- WHERE u.id = c.users_id AND u2.id = p.users_id AND p.id = c.posts_id AND p.content LIKE '%nemo%' AND c.body IN (SELECT c.body
+--                                                                                          FROM comments c
+--                                                                                          WHERE c.body LIKE '%SSL%' OR c.body LIKE '%firewall%')
+-- ORDER BY u.last_name;
+
+
+-- ADD 1
+SELECT p.id, p.title, p.users_id
+FROM posts p, comments c
+WHERE p.id = c.posts_id AND c.users_id = p.users_id;
