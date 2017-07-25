@@ -56,6 +56,13 @@
 -- WHERE c.body LIKE '%matrix%';
 
 -- STEP 12
-SELECT u.first_name, u.last_name, c.body AS "comment_body"
-FROM users u INNER JOIN posts p ON u.id = p.users_id INNER JOIN comments c ON p.id = c.posts_id
-WHERE c.body LIKE '%SSL%' AND p.content LIKE '%dolorum%';
+-- SELECT u.first_name, u.last_name, c.body AS "comment_body"
+-- FROM users u INNER JOIN posts p ON u.id = p.users_id INNER JOIN comments c ON p.id = c.posts_id
+-- WHERE c.body LIKE '%SSL%' AND p.content LIKE '%dolorum%';
+
+-- STEP 13
+SELECT u.first_name AS "post_author_first_name", u.last_name AS "post_author_last_name", p.title AS "post_title", u.username AS "comment_author_username", c.body AS "comment_body"
+FROM users u, posts p, comments c
+WHERE u.id = p.users_id AND p.id = c.posts_id AND p.content LIKE '%nemo%' AND c.body IN (SELECT c.body
+FROM comments c
+WHERE c.body LIKE '%SSL%' OR c.body LIKE '%firewall%');
