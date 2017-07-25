@@ -13,7 +13,13 @@
 -- FROM posts p, users u
 -- WHERE u.first_name = 'Norene' AND u.last_name = 'Schmitt';
 
-SELECT u.username, p.created_at
-FROM users u LEFT JOIN posts p ON u.id = p.id
-WHERE DATE(p.created_at) >=  DATE('2015-01-01')
-ORDER BY p.created_at;
+-- SELECT u.username, p.created_at
+-- FROM users u LEFT JOIN posts p ON u.id = p.id
+-- WHERE DATE(p.created_at) >=  DATE('2015-01-01')
+-- ORDER BY p.created_at;
+
+SELECT p.title, p.content, u.username
+FROM users u RIGHT JOIN posts p ON u.id = p.users_id
+WHERE u.created_at < '2015-01-01'
+ORDER BY u.created_at DESC;
+
