@@ -61,27 +61,25 @@
 -- WHERE c.body LIKE '%SSL%' AND p.content LIKE '%dolorum%';
 
 -- STEP 13
--- SELECT p.id, u.first_name AS "post_author_first_name", u.last_name AS "post_author_last_name", p.title AS "post_title", c.body AS "comment_body", u2.username AS "comment_author_username"
--- FROM users u, users u2, posts p, comments c
--- WHERE u.id = c.users_id AND u2.id = p.users_id AND p.id = c.posts_id AND p.content LIKE '%nemo%' AND c.body IN (SELECT c.body
---                                                                                          FROM comments c
---                                                                                          WHERE c.body LIKE '%SSL%' OR c.body LIKE '%firewall%')
--- ORDER BY u.last_name;
+SELECT p.id, u.first_name AS "post_author_first_name", u.last_name AS "post_author_last_name", p.title AS "post_title", c.body AS "comment_body", u2.username AS "comment_author_username"
+FROM users u, users u2, posts p, comments c
+WHERE u.id = c.users_id AND u2.id = p.users_id AqND p.id = c.posts_id AND p.content LIKE '%nemo%' AND (c.body LIKE '%SSL%' OR c.body LIKE '%firewall%')
+ORDER BY u.last_name;
 
 
 -- ADD 1
-SELECT p.id, p.title, p.users_id
-FROM posts p, comments c
-WHERE p.id = c.posts_id AND c.users_id = p.users_id;
+-- SELECT p.id, p.title, p.users_id
+-- FROM posts p, comments c
+-- WHERE p.id = c.posts_id AND c.users_id = p.users_id;
 
 -- WHY DOES THIS RETURN NOTHING? DOES IT NOT EXIST?
 
 -- ADD 2
-SELECT COUNT(c.id) AS comment_count
-FROM comments c, posts p
-WHERE c.posts_id = p.id AND p.created_at > '2015-07-14';
+-- SELECT COUNT(c.id) AS comment_count
+-- FROM comments c, posts p
+-- WHERE c.posts_id = p.id AND p.created_at > '2015-07-14';
 
 -- ADD 3
-SELECT u.first_name || ' ' || u.last_name AS user
-FROM users u, comments c
-WHERE u.id = c.users_id AND c.body LIKE '%programming%';
+-- SELECT u.first_name || ' ' || u.last_name AS user
+-- FROM users u, comments c
+-- WHERE u.id = c.users_id AND c.body LIKE '%programming%';
