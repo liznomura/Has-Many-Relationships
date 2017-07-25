@@ -46,6 +46,11 @@
 -- ORDER BY p.created_at;
 
 -- STEP 10
-SELECT p.title AS "post_title", p.url AS "post_url", c.body AS "comment_body"
-FROM comments c LEFT JOIN posts p ON c.posts_id = p.id
-WHERE c.body LIKE '%USB%';
+-- SELECT p.title AS "post_title", p.url AS "post_url", c.body AS "comment_body"
+-- FROM comments c LEFT JOIN posts p ON c.posts_id = p.id
+-- WHERE c.body LIKE '%USB%';
+
+-- STEP 11
+SELECT p.title AS "post_title", u.first_name, u.last_name, c.body AS "comment_body"
+FROM users u INNER JOIN posts p ON u.id = p.users_id INNER JOIN comments c ON p.id = c.posts_id
+WHERE c.body LIKE '%matrix%';
