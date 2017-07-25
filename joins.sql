@@ -1,2 +1,6 @@
+-- SELECT *
+-- FROM users;
+
 SELECT *
-FROM users;
+FROM posts
+WHERE users_id = 100;
