@@ -18,8 +18,10 @@
 -- WHERE DATE(p.created_at) >=  DATE('2015-01-01')
 -- ORDER BY p.created_at;
 
-SELECT p.title, p.content, u.username
-FROM users u RIGHT JOIN posts p ON u.id = p.users_id
-WHERE u.created_at < '2015-01-01'
-ORDER BY u.created_at DESC;
+-- SELECT p.title, p.content, u.username
+-- FROM users u RIGHT JOIN posts p ON u.id = p.users_id
+-- WHERE u.created_at < '2015-01-01'
+-- ORDER BY u.created_at DESC;
 
+SELECT p.title AS "Post Title", c.id, c.body, c.created_at, c.updated_at, c.users_id, c.posts_id
+FROM posts p RIGHT JOIN comments c ON p.id = c.posts_id;
