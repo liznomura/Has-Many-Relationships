@@ -51,6 +51,11 @@
 -- WHERE c.body LIKE '%USB%';
 
 -- STEP 11
-SELECT p.title AS "post_title", u.first_name, u.last_name, c.body AS "comment_body"
+-- SELECT p.title AS "post_title", u.first_name, u.last_name, c.body AS "comment_body"
+-- FROM users u INNER JOIN posts p ON u.id = p.users_id INNER JOIN comments c ON p.id = c.posts_id
+-- WHERE c.body LIKE '%matrix%';
+
+-- STEP 12
+SELECT u.first_name, u.last_name, c.body AS "comment_body"
 FROM users u INNER JOIN posts p ON u.id = p.users_id INNER JOIN comments c ON p.id = c.posts_id
-WHERE c.body LIKE '%matrix%';
+WHERE c.body LIKE '%SSL%' AND p.content LIKE '%dolorum%';
