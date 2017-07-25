@@ -40,7 +40,12 @@
 -- ORDER BY p.created_at DESC;
 
 -- STEP 9
+-- SELECT p.title AS "post_title", p.url AS "post_url", c.body AS "comment_body"
+-- FROM comments c LEFT JOIN posts p ON c.posts_id = p.id
+-- WHERE p.created_at > '2015-01-01'
+-- ORDER BY p.created_at;
+
+-- STEP 10
 SELECT p.title AS "post_title", p.url AS "post_url", c.body AS "comment_body"
 FROM comments c LEFT JOIN posts p ON c.posts_id = p.id
-WHERE p.created_at > '2015-01-01'
-ORDER BY p.created_at;
+WHERE c.body LIKE '%USB%';
